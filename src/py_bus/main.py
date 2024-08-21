@@ -1,6 +1,7 @@
-from model import Component, MessageBroker
-from presenter import IntegrationPresenter
-from view import ConsoleView
+from presenter.IntegrationPresenter import IntegrationPresenter
+from model.MessageBroker import MessageBroker
+from model.Component import Component
+from view.ConsoleView import ConsoleView
 
 if __name__ == "__main__":
     # Создание компонентов MVP
