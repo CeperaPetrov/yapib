@@ -11,3 +11,10 @@ class MessageBroker:
         if event_type in self.subscribers:
             for subscriber in self.subscribers[event_type]:
                 subscriber.receive(event_type, data)
+
+    def unsubscribe(self, event_type, subscriber):
+        if event_type in self.subscribers:
+            if subscriber in self.subscribers[event_type]:
+                self.subscribers[event_type].remove(subscriber)
+                return True
+        return False
