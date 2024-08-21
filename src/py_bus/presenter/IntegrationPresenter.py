@@ -1,4 +1,4 @@
-from py_bus.model.Component import Component
+from model.Component import Component
 
 
 class IntegrationPresenter:
