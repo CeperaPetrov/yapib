@@ -1,30 +1,35 @@
 class ConsoleView:
-    def display_message(self, event_type, data):
-        print(f"\nMessage Published - {event_type}: {data}")
-
     def show_menu(self):
-        print("\nMenu:")
-        print("1. Send Message")
-        print("2. Add Subscriber")
-        print("3. Remove Subscriber")
-        print("4. View Subscribers")
-        print("5. View Component Status")
-        print("6. Exit")
+        self.display_message(message="\nMenu:")
+        self.display_message(message="1. Send Message")
+        self.display_message(message="2. Add Subscriber")
+        self.display_message(message="3. Remove Subscriber")
+        self.display_message(message="4. View Subscribers")
+        self.display_message(message="5. View Component Status")
+        self.display_message(message="6. Save State")
+        self.display_message(message="7. Load State")
+        self.display_message(message="8. Exit")
 
     def get_user_input(self, prompt):
         return input(prompt)
+   
+    def display_message(self, message):
+        print(message)
+
+    def display_published_message(self, event_type, message):
+        self.display_message(self, message=f"\nMessage Published - {event_type}: {message}")
 
     def display_subscribers(self, subscribers):
-        print("\nCurrent Subscribers:")
+        self.display_message(message="\nCurrent Subscribers:")
         for event_type, subs in subscribers.items():
-            print(f"Event Type: {event_type}")
+            self.display_message(message=f"Event Type: {event_type}")
             for sub in subs:
-                print(f"  - {sub.name}")
+                self.display_message(message=f"  - {sub.name}")
 
     def display_component_status(self, component):
         status = component.get_status()
-        print(f"\nComponent '{status['name']}' Status:")
-        print(f"  - Received Messages: {status['received_messages']}")
+        self.display_message(message=f"\nComponent '{status['name']}' Status:")
+        self.display_message(message=f"  - Received Messages: {status['received_messages']}")
 
     def show_goodbye(self):
-        print("Exiting the program. Goodbye!")
+        self.display_message(message="Exiting the program. Goodbye!")

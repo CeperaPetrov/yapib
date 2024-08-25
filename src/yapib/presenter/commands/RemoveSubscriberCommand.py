@@ -11,8 +11,8 @@ class RemoveSubscriberCommand(Command):
         if component_name in self.presenter.components:
             component = self.presenter.components[component_name]
             if self.presenter.model.unsubscribe(event_type, component):
-                print(f"Component '{component_name}' unsubscribed from '{event_type}'")
+                self.presenter.view.display_message(message=f"Component '{component_name}' unsubscribed from '{event_type}'")
             else:
-                print(f"Component '{component_name}' was not subscribed to '{event_type}'")
+                self.presenter.view.display_message(message=f"Component '{component_name}' was not subscribed to '{event_type}'")
         else:
-            print(f"Component '{component_name}' does not exist.")
+            self.presenter.view.display_message(message=f"Component '{component_name}' does not exist.")

@@ -16,3 +16,20 @@ class Component:
             "name": self.name,
             "received_messages": self.received_messages
         }
+        
+    # Сериализации и десериализация
+    # У нас есть поле broker со сылкой на MessageBroker.
+    # Для предотвращения циклических зависимостий переопределим __getstate__ и __setstate__
+    # где будем удалять и добавлять данные в поле broker при сериализации и десериализации 
+    
+    def __getstate__(self):
+        # Сохраняем состояние без ссылки на брокера
+        state = self.__dict__.copy()
+        del state['broker']
+        return state
+
+    def __setstate__(self, state):
+        # Восстанавливаем состояние и добавляем broker как None
+        self.__dict__.update(state)
+        # сами ссылки на объект восстанавливаются в MessageBroker
+        self.broker = None  

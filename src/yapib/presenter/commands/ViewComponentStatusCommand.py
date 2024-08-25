@@ -10,4 +10,4 @@ class ViewComponentStatusCommand(Command):
             component = self.presenter.components[component_name]
             self.presenter.view.display_component_status(component)
         else:
-            print(f"Component '{component_name}' does not exist.")
+            self.presenter.view.display_message(message=f"Component '{component_name}' does not exist.")

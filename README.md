@@ -1,9 +1,15 @@
 # Интеграционная шина YAPIB
 Проект YAPIB - yet another python integration bus.
 ## Установка и запуск
+Скачайте проект используя команда
+```
+git clone https://github.com/CeperaPetrov/yapib.git
+```
 
-```python src/yapib/main.py```
-
+Для запуска приложения выполните следюущую команду из директории проекта:
+```
+python src/yapib/main.py
+```
 
 ## Описание функций меню пользовательского интерфейса
 

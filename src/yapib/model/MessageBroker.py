@@ -1,3 +1,5 @@
+import pickle
+
 class MessageBroker:
     def __init__(self):
         self.subscribers = {}
@@ -18,3 +20,17 @@ class MessageBroker:
                 self.subscribers[event_type].remove(subscriber)
                 return True
         return False
+
+    def save_state(self, filename):
+        with open(filename, 'wb') as f:
+            pickle.dump(self, f)
+
+    @staticmethod
+    def load_state(filename):
+        with open(filename, 'rb') as f:
+            broker = pickle.load(f)
+        # Восстановим ссылки на брокера в компонентах
+        for event_type, components in broker.subscribers.items():
+            for component in components:
+                component.broker = broker
+        return broker

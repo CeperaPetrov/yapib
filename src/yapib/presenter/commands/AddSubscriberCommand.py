@@ -11,4 +11,4 @@ class AddSubscriberCommand(Command):
         component = Component(self.presenter.model, component_name)
         self.presenter.subscribe_component(event_type, component)
         self.presenter.components[component_name] = component
-        print(f"Component '{component_name}' subscribed to '{event_type}'")
+        self.presenter.view.display_message(message=f"Component '{component_name}' subscribed to '{event_type}'")
