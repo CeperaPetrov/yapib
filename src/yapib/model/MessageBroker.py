@@ -21,16 +21,25 @@ class MessageBroker:
                 return True
         return False
 
-    def save_state(self, filename):
+    def save_state(self, filename, components):
+        state = {
+            'broker': self,
+            'components': components
+        }
         with open(filename, 'wb') as f:
-            pickle.dump(self, f)
+            pickle.dump(state, f)
 
     @staticmethod
     def load_state(filename):
-        with open(filename, 'rb') as f:
-            broker = pickle.load(f)
-        # Восстановим ссылки на брокера в компонентах
-        for event_type, components in broker.subscribers.items():
-            for component in components:
-                component.broker = broker
-        return broker
+        try:
+            with open(filename, 'rb') as f:
+                state = pickle.load(f)
+                broker = state['broker']
+                components = state['components']
+            # Восстановим ссылки на брокера в компонентах
+            for event_type, comps in broker.subscribers.items():
+                for component in comps:
+                    component.broker = broker
+            return broker, components
+        except FileNotFoundError:
+            return None, None

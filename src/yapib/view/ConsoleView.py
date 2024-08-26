@@ -17,7 +17,7 @@ class ConsoleView:
         print(message)
 
     def display_published_message(self, event_type, message):
-        self.display_message(self, message=f"\nMessage Published - {event_type}: {message}")
+        self.display_message(message=f"\nMessage Published - {event_type}: {message}")
 
     def display_subscribers(self, subscribers):
         self.display_message(message="\nCurrent Subscribers:")

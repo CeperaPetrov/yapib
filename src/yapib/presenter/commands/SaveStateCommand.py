@@ -8,5 +8,6 @@ class SaveStateCommand(Command):
         filename = self.presenter.view.get_user_input("Enter filename to save state [broker_state.pkl]: ")
         if filename == '':
             filename = 'broker_state.pkl'
-        self.presenter.model.save_state(filename)
+
+        self.presenter.model.save_state(filename, self.presenter.components)
         self.presenter.view.display_message(message="State saved successfully.")
